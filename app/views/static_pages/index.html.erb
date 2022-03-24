@@ -1,0 +1,17 @@
+<%= form_with(method: :get, local: true) do |form| %>
+  <%= form.label :user_id, "Enter a valid flickr user ID", class: "title is-4"%>
+  <%= form.text_field :user_id, class: "input", placeholder: "User ID" %>
+   <br>
+  <%= form.submit "Search", class: "button is-info" %>
+<% end %>
+
+<% if @photos %>
+ Pictures of <%= params[:user_id] %>
+ <br>
+  <% @photos.each do |photo| %>
+  <%= link_to(Flickr.url(photo)) do %>
+  <img src="<%= Flickr.url(photo) %>"/>
+  <% end %>
+  <% end %>
+<% end %>
+ 
